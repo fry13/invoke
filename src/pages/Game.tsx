@@ -18,22 +18,30 @@ export default function GamePage() {
   };
 
   //работа с инпутом
-  const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState("");
-  function useInput() {
-    //const [score, setScore] = useState(0);
-    function onChange(e: any) {
-      setValue(e.target.value);
-      if (value.length === 3) {
-        setValue(value.slice(1) + e.target.value.slice(-1));
-      }
+
+  const keyDownHandler = (event: any) => {
+    const keyName = event.key;
+    if (
+      keyName.toLowerCase() === "q" ||
+      keyName.toLowerCase() === "w" ||
+      keyName.toLowerCase() === "e"
+    ) {
+      handler(keyName);
     }
-    return {
-      value,
-      onChange,
-    };
-  }
-  const inputProps = useInput();
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyDownHandler, true);
+    return () => document.removeEventListener("keydown", keyDownHandler, true);
+  });
+
+  const handler = (keyName: string) => {
+    setValue(value + keyName);
+    if (value.length === 3) {
+      setValue(value.slice(1) + keyName);
+    }
+  };
 
   //задаем квест оглядываясь на предыдущий
   const randomNumber = () => Math.floor(Math.random() * 10);
@@ -83,7 +91,7 @@ export default function GamePage() {
 
   //проверяем выполнен ли квест, прибавляем таймер, выводим очки
   const [score, setScore] = useState(0);
-  if (spells[currentQuest].buttons.includes(inputProps.value)) {
+  if (spells[currentQuest].buttons.includes(value)) {
     setScore(score + 1);
     timerProps.incTimer();
     setCurrentQuest(createNextQuest(currentQuest));
@@ -104,9 +112,6 @@ export default function GamePage() {
       element.current.focus();
     }
   }
-  useEffect(() => {
-    keepFocus(inputRef);
-  }, [isDisabled]);
 
   return (
     <div className="w-1/3 mx-auto text-center bg-gradient-to-t from-slate-50 to-slate-100 rounded p-2 pb-8 shadow-xl">
@@ -125,14 +130,7 @@ export default function GamePage() {
       <Icon spell={spells[currentQuest]} />
       <p className="mx-auto">Score: {score}</p>
       <p className="mx-auto">Timer: {timerProps.seconds}</p>
-      <input
-        className="w-20 mx-auto"
-        ref={inputRef}
-        type="text"
-        disabled={isDisabled}
-        {...inputProps}
-        onBlur={() => keepFocus(inputRef)}
-      />
+      <p className="mx-auto font-bold">{value}</p>      
     </div>
   );
 }
