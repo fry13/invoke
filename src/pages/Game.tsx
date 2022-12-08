@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../components/Icon";
 import { spells } from "../spells";
 import { useTimer } from "react-timer-hook";
@@ -104,13 +104,6 @@ export default function GamePage() {
     setCurrentQuest(createNextQuest(currentQuest));
     setValue("");
     setIsDisabled(false);
-  }
-
-  //поддержка фокуса на инпуте
-  function keepFocus(element: any) {
-    if (element.current !== null) {
-      element.current.focus();
-    }
   }
 
   return (
