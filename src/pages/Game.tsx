@@ -54,7 +54,14 @@ export default function GamePage() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 15);
   function useCountdown(expiryTimestamp: any) {
-    const { seconds, isRunning, start, pause, resume, restart } = useTimer({
+    const {
+      seconds,
+      //isRunning,
+      start,
+      pause,
+      //resume,
+      restart,
+    } = useTimer({
       expiryTimestamp,
       onExpire: () => {
         //alert(score);

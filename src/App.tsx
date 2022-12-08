@@ -4,7 +4,6 @@ import GamePage from './pages/Game';
 import HomePage from './pages/Home';
 import ResultPage from './pages/Result';
 import HelpPage from './pages/Help';
-import MainContainer from './components/MainContainer';
 
 function App() {
   
