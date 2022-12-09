@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../components/Icon";
-import invoke from "../images/invoke.png";
 import { spells } from "../spells";
 import { useTimer } from "react-timer-hook";
 import Button from "../components/Button";
@@ -127,16 +126,23 @@ export default function GamePage(props: any) {
           onClick={() => routeChange("/")}
         />
       </div>
-      {<Icon spell={spells[currentQuest]} /> || (
-        <img
-          className="mx-auto rounded border-2 border-slate-500/50"
-          src={invoke}
-          alt="Invoke"
-        />
-      )}
-      <p className="mx-auto">Score: {score}</p>
-      <p className="mx-auto">Timer: {timerProps.seconds}</p>
-      <p className="mx-auto font-bold">{value}</p>
+      <Icon spell={spells[currentQuest]} />
+      <p className="mx-auto font-bold mt-4">{value || " "}</p>
+      <div className="mt-4">
+        <span className="mr-8 text-slate-500/75">
+          Score: <span className="font-bold">{score}</span>
+        </span>
+        <span className=" text-slate-500/75">
+          Time:{" "}
+          <span
+            className={`font-bold ${
+              timerProps.seconds <= 5 ? "text-red-500/75" : "text-slate-500/75"
+            }`}
+          >
+            {timerProps.seconds}
+          </span>
+        </span>
+      </div>
     </>
     // </div>
   );
