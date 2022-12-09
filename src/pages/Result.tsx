@@ -18,8 +18,12 @@ export default function ResultPage(props: any) {
         text={xmark}
         onClick={() => routeChange("/")}
       />
-      <p> Your Current score: {props.score}</p>
-      <p> Your Best score: {props.bestScore}</p>
+      <p>
+        Your Current score: <span className="font-bold">{props.score}</span>
+      </p>
+      <p>
+        Your Best score: <span className="font-bold">{props.bestScore}</span>
+      </p>
     </div>
   );
 }

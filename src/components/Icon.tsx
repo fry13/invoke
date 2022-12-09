@@ -14,9 +14,7 @@ export default function Icon({ spell }: SpellProps) {
         src={spell.image || invoke}
         alt={spell.name}
       />
-      <p className="mx-auto text-slate-500/75 font-bold text-center">
-        {spell.name}
-      </p>
+      <p className="mx-auto font-bold text-center">{spell.name}</p>
     </div>
   );
 }

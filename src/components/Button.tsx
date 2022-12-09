@@ -3,7 +3,7 @@ import React from "react";
 export default function Button(props: any) {
   return (
     <button
-      className={`bg-gradient-to-tr border-2 border-slate-500/50 text-slate-500/75 cursor-pointer hover:border-slate-500/75 hover:text-slate-500/75 ${props.classes}`}
+      className={`bg-gradient-to-tr border-2 border-slate-500/50 cursor-pointer hover:border-slate-500/75 ${props.classes}`}
       onClick={props.onClick}
     >
       {props.text}
