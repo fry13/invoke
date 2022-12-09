@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export default function MainContainer() {
+export default function MainContainer({ Children }: any) {
   return (
-    <div className='flex justify-center mx-auto w-1/2 h-screen'>
-      MainContainer
+    <div className="w-1/3 h-1/3 mx-auto text-center bg-gradient-to-t from-slate-50 to-white rounded p-2 pb-8 shadow-xl">
+      {Children}
     </div>
-  )
+  );
 }
