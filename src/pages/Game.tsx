@@ -20,13 +20,9 @@ export default function GamePage(props: any) {
   const [value, setValue] = useState("");
 
   const keyDownHandler = (event: any) => {
-    const keyName = event.key;
-    if (
-      keyName.toLowerCase() === "q" ||
-      keyName.toLowerCase() === "w" ||
-      keyName.toLowerCase() === "e"
-    ) {
-      handler(keyName);
+    const key = event.keyCode;
+    if (key === 81 || key === 87 || key === 69) {
+      handler(key);
     }
   };
 
@@ -35,7 +31,11 @@ export default function GamePage(props: any) {
     return () => document.removeEventListener("keydown", keyDownHandler, true);
   });
 
-  const handler = (keyName: string) => {
+  const handler = (key: number) => {
+    let keyName;
+    if (key === 81) keyName = "q";
+    else if (key === 87) keyName = "w";
+    else if (key === 69) keyName = "e";
     setValue(value + keyName);
     if (value.length === 3) {
       setValue(value.slice(1) + keyName);
@@ -129,10 +129,10 @@ export default function GamePage(props: any) {
       <Icon spell={spells[currentQuest]} />
       <p className="mx-auto font-bold mt-4">{value || " "}</p>
       <div className="mt-4">
-        <span className="mr-8 text-slate-500/75">
+        <span className="mr-8">
           Score: <span className="font-bold">{score}</span>
         </span>
-        <span className=" text-slate-500/75">
+        <span>
           Time:{" "}
           <span
             className={`font-bold ${
