@@ -42,17 +42,23 @@ export default function GamePage(props: any) {
     }
   };
 
-  //задаем квест оглядываясь на предыдущий
+  //задаем квест оглядываясь на предыдущие
   const randomNumber = () => Math.floor(Math.random() * 10);
   const [currentQuest, setCurrentQuest] = useState(randomNumber());
+  const [prevQuests, setPrevQuests] = useState<Number[]>([currentQuest]);
 
-  function createNextQuest(prevQuest: number) {
+  function createNextQuest(questsArray: Number[]) {
     let quest: number = randomNumber();
-    if (quest === prevQuest) {
-      while (quest === prevQuest) {
+    if (questsArray.includes(quest)) {
+      while (questsArray.includes(quest)) {
         quest = randomNumber();
       }
     }
+    if (prevQuests.length === 4) {
+      prevQuests.shift();
+    }
+    setPrevQuests([...prevQuests, quest]);
+    console.log(prevQuests);
     return quest;
   }
 
@@ -89,7 +95,7 @@ export default function GamePage(props: any) {
   if (spells[currentQuest].buttons.includes(value)) {
     setScore(score + 1);
     timerProps.incTimer();
-    setCurrentQuest(createNextQuest(currentQuest));
+    setCurrentQuest(createNextQuest(prevQuests));
   }
 
   //в конце игры
@@ -107,7 +113,7 @@ export default function GamePage(props: any) {
     time.setSeconds(new Date().getSeconds() + 15);
     timerProps.restart(time);
     setScore(0);
-    setCurrentQuest(createNextQuest(currentQuest));
+    setCurrentQuest(createNextQuest(prevQuests));
     setValue("");
   }
 
