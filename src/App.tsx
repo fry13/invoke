@@ -4,19 +4,49 @@ import GamePage from "./pages/Game";
 import HomePage from "./pages/Home";
 import ResultPage from "./pages/Result";
 import HelpPage from "./pages/Help";
+import MainContainer from "./components/MainContainer";
 
 function App() {
-  const [bestScore, setBestScore] = useState(0);
-  const BestScoreContext = React.createContext(bestScore);
+  const [bestScore, setBestScore] = useState(
+    localStorage.getItem("bestScore") || 0
+  );
+  const [currentScore, setCurrentScore] = useState(0);
+
+  const setCurrentResult = (score: number) => {
+    setCurrentScore(score);
+  };
+  const setBestResult = (score: number) => {
+    setBestScore(score);
+  };
 
   return (
     <div className="flex flex-col justify-center mx-auto w-screen h-screen">
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* <BestScoreContext.Provider value={this.state.theme}> */}
-        <Route path="/game" element={<GamePage />} />
-        <Route path="/result" element={<ResultPage />} />
-        {/* </BestScoreContext.Provider> */}
+        <Route path="/" element={<MainContainer Children={<HomePage />} />} />
+        <Route
+          path="/game"
+          element={
+            <MainContainer
+              Children={
+                <GamePage
+                  setCurrentScore={setCurrentResult}
+                  setBestScore={setBestResult}
+                  bestScore={bestScore}
+                />
+              }
+            />
+          }
+        />
+        <Route
+          path="/result"
+          element={
+            <MainContainer
+              Children={
+                <ResultPage score={currentScore} bestScore={bestScore} />
+              }
+            />
+          }
+        />
         <Route path="/help" element={<HelpPage />} />
       </Routes>
     </div>

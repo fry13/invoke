@@ -11,7 +11,7 @@ export default function HomePage() {
   };
 
   return (
-    <>
+    <div className="flex flex-col justify-center h-full">
       <img
         className="mx-auto rounded p-0.5 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
         src={invoke}
@@ -22,6 +22,6 @@ export default function HomePage() {
         text="Start"
         onClick={() => routeChange("/game")}
       />
-    </>
+    </div>
   );
 }

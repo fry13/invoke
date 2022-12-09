@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Icon from "../components/Icon";
 import { spells } from "../spells";
 import { useTimer } from "react-timer-hook";
@@ -11,13 +11,12 @@ import { useNavigate } from "react-router-dom";
 const xmark = <FontAwesomeIcon icon={faXmark} />;
 const restart = <FontAwesomeIcon icon={faRotateLeft} />;
 
-export default function GamePage() {
+export default function GamePage(props: any) {
   const navigate = useNavigate();
   const routeChange = (path: string) => {
     navigate(path);
   };
 
-  //работа с инпутом
   const [value, setValue] = useState("");
 
   const keyDownHandler = (event: any) => {
@@ -58,7 +57,6 @@ export default function GamePage() {
   }
 
   //работа с таймером
-  const [isDisabled, setIsDisabled] = useState(false);
   const time = new Date();
   time.setSeconds(time.getSeconds() + 15);
   function useCountdown(expiryTimestamp: any) {
@@ -72,11 +70,8 @@ export default function GamePage() {
     } = useTimer({
       expiryTimestamp,
       onExpire: () => {
-        //alert(score);
-        //setScore(0);
-        navigate("/result");
         pause();
-        setIsDisabled(true);
+        endGameHandler();
       },
     });
 
@@ -97,25 +92,36 @@ export default function GamePage() {
     setCurrentQuest(createNextQuest(currentQuest));
   }
 
+  //в конце игры
+  const endGameHandler = () => {
+    const best = props.bestScore || 0;
+    props.setCurrentScore(score);
+    if (score > parseInt(best)) {
+      props.setBestScore(score);
+      localStorage.setItem("bestScore", score.toString());
+    }
+    navigate("/result");
+  };
+
   function restartGame() {
     time.setSeconds(new Date().getSeconds() + 15);
     timerProps.restart(time);
     setScore(0);
     setCurrentQuest(createNextQuest(currentQuest));
     setValue("");
-    setIsDisabled(false);
   }
 
   return (
-    <div className="w-1/3 mx-auto text-center bg-gradient-to-t from-slate-50 to-slate-100 rounded p-2 pb-8 shadow-xl">
+    // <div className="w-1/3 mx-auto text-center bg-gradient-to-t from-slate-50 to-slate-100 rounded p-2 pb-8 shadow-xl">
+    <>
       <div className="flex justify-end mb-2">
         <Button
-          classes="w-10 h-10 p-1 text-base rounded-full text-xl mb-10 mr-2"
+          classes="w-10 h-10 p-1 rounded-full text-xl mb-10 mr-2"
           text={restart}
           onClick={restartGame}
         />
         <Button
-          classes="w-10 h-10 p-1 text-base rounded-full text-xl mb-10"
+          classes="w-10 h-10 p-1 rounded-full text-xl mb-10"
           text={xmark}
           onClick={() => routeChange("/")}
         />
@@ -123,7 +129,8 @@ export default function GamePage() {
       <Icon spell={spells[currentQuest]} />
       <p className="mx-auto">Score: {score}</p>
       <p className="mx-auto">Timer: {timerProps.seconds}</p>
-      <p className="mx-auto font-bold">{value}</p>      
-    </div>
+      <p className="mx-auto font-bold">{value}</p>
+    </>
+    // </div>
   );
 }
