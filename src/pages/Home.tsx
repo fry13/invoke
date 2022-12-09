@@ -11,7 +11,7 @@ export default function HomePage() {
   };
 
   return (
-    <>
+    <div className="flex flex-col justify-center h-full">
       <img
         className="mx-auto rounded border-2 border-slate-500/50"
         src={invoke}
@@ -22,6 +22,6 @@ export default function HomePage() {
         text="Start"
         onClick={() => routeChange("/game")}
       />
-    </>
+    </div>
   );
 }
