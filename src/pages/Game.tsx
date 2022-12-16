@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Icon from "../components/Icon";
-import { spells } from "../spells";
-import { useTimer } from "react-timer-hook";
-import Button from "../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import Icon from "../components/Icon";
+import { spells } from "../spells";
+import Button from "../components/Button";
+import { useTimer } from "react-timer-hook";
 
 const xmark = <FontAwesomeIcon icon={faXmark} />;
 const restart = <FontAwesomeIcon icon={faRotateLeft} />;
@@ -58,22 +58,12 @@ export default function GamePage(props: any) {
       prevQuests.shift();
     }
     setPrevQuests([...prevQuests, quest]);
-    console.log(prevQuests);
     return quest;
   }
 
   //работа с таймером
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 15);
   function useCountdown(expiryTimestamp: any) {
-    const {
-      seconds,
-      //isRunning,
-      start,
-      pause,
-      //resume,
-      restart,
-    } = useTimer({
+    const { seconds, start, pause, restart } = useTimer({
       expiryTimestamp,
       onExpire: () => {
         pause();
@@ -82,16 +72,20 @@ export default function GamePage(props: any) {
     });
 
     const incTimer = () => {
-      time.setSeconds(time.getSeconds());
-      time.setSeconds(new Date().getSeconds() + seconds + 1);
+      if (seconds === 10) return;
+      let time = new Date();
+      time.setSeconds(time.getSeconds() + seconds + 1);
       restart(time);
     };
-    return { seconds, incTimer, start, pause, restart };
+    return { seconds, incTimer, start, restart };
   }
+
+  let time: Date = new Date();
+  time.setSeconds(time.getSeconds() + 5);
   const timerProps = useCountdown(time);
 
   //проверяем выполнен ли квест, прибавляем таймер, выводим очки
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState<number>(0);
   if (spells[currentQuest].buttons.includes(value)) {
     setScore(score + 1);
     timerProps.incTimer();
@@ -110,7 +104,8 @@ export default function GamePage(props: any) {
   };
 
   function restartGame() {
-    time.setSeconds(new Date().getSeconds() + 15);
+    let time = new Date();
+    time.setSeconds(time.getSeconds() + 5);
     timerProps.restart(time);
     setScore(0);
     setCurrentQuest(createNextQuest(prevQuests));
@@ -118,16 +113,15 @@ export default function GamePage(props: any) {
   }
 
   return (
-    // <div className="w-1/3 mx-auto text-center bg-gradient-to-t from-slate-50 to-slate-100 rounded p-2 pb-8 shadow-xl">
     <>
       <div className="flex justify-end mb-2">
         <Button
-          classes="w-10 h-10 p-1 rounded-full text-xl mb-10 mr-2"
+          classes="w-7 h-7 p-1 rounded-full text-xs mb-10 mr-2"
           text={restart}
           onClick={restartGame}
         />
         <Button
-          classes="w-10 h-10 p-1 rounded-full text-xl mb-10"
+          classes="w-7 h-7 p-1 rounded-full text-xs mb-10"
           text={xmark}
           onClick={() => routeChange("/")}
         />
@@ -138,18 +132,15 @@ export default function GamePage(props: any) {
         <span className="mr-8">
           Score: <span className="font-bold">{score}</span>
         </span>
-        <span>
-          Time:{" "}
-          <span
-            className={`font-bold ${
-              timerProps.seconds <= 5 ? "text-red-500/75" : "text-slate-500/75"
-            }`}
-          >
-            {timerProps.seconds}
-          </span>
+        Time:{" "}
+        <span
+          className={`font-bold ${
+            timerProps.seconds <= 3 ? "text-red-700" : "text-slate-800"
+          }`}
+        >
+          {timerProps.seconds}
         </span>
       </div>
     </>
-    // </div>
   );
 }

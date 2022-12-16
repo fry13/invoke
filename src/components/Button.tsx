@@ -1,9 +1,8 @@
 import React from "react";
-//from-rose-400 via-fuchsia-500 to-indigo-500 text-white
 export default function Button(props: any) {
   return (
     <button
-      className={`bg-gradient-to-tr border-2 border-slate-500/50 cursor-pointer hover:border-slate-500/75 ${props.classes}`}
+      className={`border border-slate-800 cursor-pointer hover:bg-slate-100 active:bg-slate-200 focus:outline-none transition-colors ${props.classes}`}
       onClick={props.onClick}
     >
       {props.text}

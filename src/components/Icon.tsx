@@ -10,11 +10,11 @@ export default function Icon({ spell }: SpellProps) {
   return (
     <div className="w-max h-max mx-auto">
       <img
-        className="mx-auto rounded border-2 border-slate-500/50"
+        className="mx-auto rounded border border-slate-800 transition-all"
         src={spell.image || invoke}
-        alt={spell.name}
+        alt={spell.name || invoke}
       />
-      <p className="mx-auto font-bold text-center">{spell.name}</p>
+      <p className="mx-auto font-bold text-center">{spell.name || invoke}</p>
     </div>
   );
 }

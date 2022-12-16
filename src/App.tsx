@@ -7,10 +7,9 @@ import HelpPage from "./pages/Help";
 import MainContainer from "./components/MainContainer";
 
 function App() {
-  const [bestScore, setBestScore] = useState(
-    localStorage.getItem("bestScore") || 0
-  );
-  const [currentScore, setCurrentScore] = useState(0);
+  const localBest = localStorage.getItem("bestScore");
+  const [bestScore, setBestScore] = useState<number>(localBest ? parseInt(localBest) : 0);
+  const [currentScore, setCurrentScore] = useState<number>(0);
 
   const setCurrentResult = (score: number) => {
     setCurrentScore(score);
