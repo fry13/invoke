@@ -1,6 +1,6 @@
 import React from "react";
 import { spells } from "../spells";
-import Icon from "./Icon";
+import Icon from "./Spell";
 
 export default function MainContainer({ Children }: any) {
   let res = spells.map(function (item) {

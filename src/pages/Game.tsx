@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTimer } from "react-timer-hook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import Icon from "../components/Icon";
-import { spells } from "../spells";
+import Icon from "../components/Spell";
 import Button from "../components/Button";
-import { useTimer } from "react-timer-hook";
+import { spells } from "../spells";
+import { orbs } from "../orbs";
+import Orb from "../components/Orb";
 
 const xmark = <FontAwesomeIcon icon={faXmark} />;
 const restart = <FontAwesomeIcon icon={faRotateLeft} />;
@@ -127,8 +129,13 @@ export default function GamePage(props: any) {
         />
       </div>
       <Icon spell={spells[currentQuest]} />
-      <p className="mx-auto font-bold mt-4">{value || " "}</p>
-      <div className="mt-4">
+      <div className="flex w-max mx-auto">
+        <Orb button={value[0]} />
+        <Orb button={value[1]} />
+        <Orb button={value[2]} />
+      </div>
+      {/* <p className="mx-auto font-bold mt-2">{value || " "}</p> */}
+      <div className="mt-2">
         <span className="mr-8">
           Score: <span className="font-bold">{score}</span>
         </span>
@@ -144,3 +151,4 @@ export default function GamePage(props: any) {
     </>
   );
 }
+

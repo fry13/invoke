@@ -9,7 +9,6 @@ import ForgeSpirit from './images/forge_spirit.png'
 import ChaosMeteor from './images/chaos_meteor.png'
 import DeafeningBlast from './images/deafening_blast.png'
 
-
 export const spells = [
   {
     id: 0,
@@ -24,49 +23,49 @@ export const spells = [
     image: GhostWalk
   },
   {
-    id: 3,
+    id: 2,
     name: 'Ice Wall',
     buttons: ['qqe', 'eqq', 'qeq'],
     image: IceWall
   },
   {
-    id: 4,
+    id: 3,
     name: 'EMP',
     buttons: ['www'],
     image: EMP
   },
   {
-    id: 5,
+    id: 4,
     name: 'Tornado',
     buttons: ['wwq', 'qww', 'wqw'],
     image: Tornado
   },
   {
-    id: 6,
+    id: 5,
     name: 'Alacrity',
     buttons: ['wwe', 'eww', 'wew'],
     image: Alacrity
   },
   {
-    id: 7,
+    id: 6,
     name: 'Sun Strike',
     buttons: ['eee'],
     image: SunStrike
   },
   {
-    id: 8,
+    id: 7,
     name: 'Forge Spirit',
     buttons: ['eeq', 'qee', 'eqe'],
     image: ForgeSpirit
   },
   {
-    id: 9,
+    id: 8,
     name: 'Chaos Meteor',
     buttons: ['eew', 'wee', 'ewe'],
     image: ChaosMeteor
   },
   {
-    id: 10,
+    id: 9,
     name: 'Deafening Blast',
     buttons: ['qwe', 'qew', 'ewq', 'eqw', 'wqe', 'weq'],
     image: DeafeningBlast

@@ -4,3 +4,10 @@ export interface ISpell {
   buttons: string[]
   image: string
 }
+
+export interface IOrb {
+  id: number
+  name: string
+  button: string
+  image: string
+}

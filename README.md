@@ -1,6 +1,6 @@
 # [Invoke](https://darling-trifle-30ec30.netlify.app/)
 
-Приложение для запоминания комбинаций заклинаний при игре на инвокере.
+Приложение для помощи запоминания комбинаций заклинаний при игре в Dota 2 на герое Invoker.
 Написано с помощью react, typescript, tailwind.  
 **[Ссылка на проект](https://darling-trifle-30ec30.netlify.app/)**
 

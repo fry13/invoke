@@ -8,13 +8,13 @@ interface SpellProps {
 
 export default function Icon({ spell }: SpellProps) {
   return (
-    <div className="w-max h-max mx-auto">
+    <>
       <img
         className="mx-auto rounded border border-slate-800 transition-all"
         src={spell.image || invoke}
-        alt={spell.name || invoke}
+        alt={spell.name || "invoke"}
       />
-      <p className="mx-auto font-bold text-center">{spell.name || invoke}</p>
-    </div>
+      <p className="mx-auto font-bold text-center">{spell.name || "invoke"}</p>
+    </>
   );
 }

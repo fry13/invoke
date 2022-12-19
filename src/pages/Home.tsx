@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { usePopper } from "react-popper";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button";
 import invoke from "../images/invoke.png";
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 const question = <FontAwesomeIcon icon={faQuestion} />;
 
