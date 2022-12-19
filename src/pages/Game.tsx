@@ -93,6 +93,11 @@ export default function GamePage(props: any) {
   time.setSeconds(time.getSeconds() + 5);
   const timerProps = useCountdown(time);
 
+  // работа с прогрессбаром
+  const [maxSeconds, setMaxSeconds] = useState(5);
+  if (timerProps.seconds > maxSeconds) setMaxSeconds(timerProps.seconds);
+  let progressBarValue = (timerProps.seconds / maxSeconds) * 100;
+
   // проверяем выполнен ли квест, прибавляем таймер, выводим очки
   const [score, setScore] = useState<number>(0);
   if (spells[currentQuest].buttons.includes(value)) {
@@ -156,13 +161,16 @@ export default function GamePage(props: any) {
           {timerProps.seconds}
         </span>
       </div>
+      <div className="w-full h-2 absolute bottom-0 -ml-2">
+        <div
+          className="bg-slate-800 h-2"
+          style={{ width: progressBarValue + "%" }}
+        ></div>
+      </div>
     </>
   );
 }
 
 //todo сделать faq страницу
-//todo изменить цвет очков на зеленый/синий/фиолетовый/оранжевый
-//todo изменить страницу результата поделив на две половины
 //todo поменять роутинг
 // ? keybindings
-// ? progressbar

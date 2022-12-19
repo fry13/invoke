@@ -1,10 +1,5 @@
 import React from "react";
-import { IOrb } from "../models";
 import { orbs } from "../orbs";
-
-interface OrbProps {
-  orb: IOrb;
-}
 
 export default function Orb({ button }: any) {
   let newOrb;
