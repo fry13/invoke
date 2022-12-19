@@ -19,6 +19,14 @@ export default function GamePage(props: any) {
     navigate(path);
   };
 
+  // предзагружаем изображения заклинаний
+  useEffect(() => {
+    spells.forEach((spell) => {
+      new Image().src = spell.image;
+    });
+  });
+
+  // вешаем слушатель на нажатие клавиш, записываем нужные нам значения
   const [value, setValue] = useState("");
 
   const keyDownHandler = (event: any) => {
@@ -44,7 +52,7 @@ export default function GamePage(props: any) {
     }
   };
 
-  //задаем квест оглядываясь на предыдущие
+  // задаем квест оглядываясь на предыдущие
   const randomNumber = () => Math.floor(Math.random() * 10);
   const [currentQuest, setCurrentQuest] = useState(randomNumber());
   const [prevQuests, setPrevQuests] = useState<Number[]>([currentQuest]);
@@ -63,7 +71,7 @@ export default function GamePage(props: any) {
     return quest;
   }
 
-  //работа с таймером
+  // работа с таймером
   function useCountdown(expiryTimestamp: any) {
     const { seconds, start, pause, restart } = useTimer({
       expiryTimestamp,
@@ -72,7 +80,6 @@ export default function GamePage(props: any) {
         endGameHandler();
       },
     });
-
     const incTimer = () => {
       if (seconds === 10) return;
       let time = new Date();
@@ -86,7 +93,7 @@ export default function GamePage(props: any) {
   time.setSeconds(time.getSeconds() + 5);
   const timerProps = useCountdown(time);
 
-  //проверяем выполнен ли квест, прибавляем таймер, выводим очки
+  // проверяем выполнен ли квест, прибавляем таймер, выводим очки
   const [score, setScore] = useState<number>(0);
   if (spells[currentQuest].buttons.includes(value)) {
     setScore(score + 1);
@@ -94,7 +101,7 @@ export default function GamePage(props: any) {
     setCurrentQuest(createNextQuest(prevQuests));
   }
 
-  //в конце игры
+  // в конце игры
   const endGameHandler = () => {
     const best = props.bestScore || 0;
     props.setCurrentScore(score);
@@ -105,6 +112,7 @@ export default function GamePage(props: any) {
     navigate("/result");
   };
 
+  // рестарт игры
   function restartGame() {
     let time = new Date();
     time.setSeconds(time.getSeconds() + 5);
@@ -151,4 +159,5 @@ export default function GamePage(props: any) {
     </>
   );
 }
+
 
