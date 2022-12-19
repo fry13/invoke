@@ -6,9 +6,9 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import Icon from "../components/Spell";
 import Button from "../components/Button";
-import { spells } from "../spells";
-import { orbs } from "../orbs";
 import Orb from "../components/Orb";
+import { rarity } from "../utils";
+import { spells } from "../spells";
 
 const xmark = <FontAwesomeIcon icon={faXmark} />;
 const restart = <FontAwesomeIcon icon={faRotateLeft} />;
@@ -145,7 +145,7 @@ export default function GamePage(props: any) {
       {/* <p className="mx-auto font-bold mt-2">{value || " "}</p> */}
       <div className="mt-2">
         <span className="mr-8">
-          Score: <span className="font-bold">{score}</span>
+          Score: <span className={`font-bold ${rarity(score)}`}>{score}</span>
         </span>
         Time:{" "}
         <span
@@ -160,4 +160,9 @@ export default function GamePage(props: any) {
   );
 }
 
-
+//todo сделать faq страницу
+//todo изменить цвет очков на зеленый/синий/фиолетовый/оранжевый
+//todo изменить страницу результата поделив на две половины
+//todo поменять роутинг
+// ? keybindings
+// ? progressbar
