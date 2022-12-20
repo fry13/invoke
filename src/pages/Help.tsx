@@ -8,7 +8,7 @@ export default function HelpPage() {
   let spellsArr = spells.map(function (spell) {
     return (
       <li className="w-1/3" key={spell.id}>
-        <Spell spell={spell} imgClasses={"w-10"} textClasses="hidden" />
+        <Spell spell={spell} imgClasses={"w-10 h-10"} textClasses="hidden" />
         <div className="flex justify-center mt-1">
           <Orb classes="h-4" button={spell.buttons[0][0]} />
           <Orb classes="h-4" button={spell.buttons[0][1]} />
