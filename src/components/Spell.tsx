@@ -1,6 +1,5 @@
 import React from "react";
 import { ISpell } from "../models";
-import invoke from "../images/invoke.png";
 
 interface SpellProps {
   spell: ISpell;
@@ -11,14 +10,14 @@ interface SpellProps {
 export default function Icon({ spell, imgClasses, textClasses }: SpellProps) {
   return (
     <div>
-      <img
+      <img        
         key={spell.id}
         className={`mx-auto rounded border border-slate-800 transition-all animate-spellSlide ${imgClasses}`}
-        src={spell.image || invoke}
-        alt={spell.name || "invoke"}
+        src={spell.image}
+        alt={spell.name}
       />
       <p className={`mx-auto font-bold text-center ${textClasses}`}>
-        {spell.name || "invoke"}
+        {spell.name}
       </p>
     </div>
   );
