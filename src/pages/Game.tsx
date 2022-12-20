@@ -121,7 +121,7 @@ export default function GamePage(props: any) {
   return (
     <>
       <Navigation restart={true} exit={true} restartHandler={restartGame} />
-      <Spell spell={spells[currentQuest]} />
+      <Spell imgClasses="animate-spellSlide" spell={spells[currentQuest]} />
       <div className="flex justify-center w-full mx-auto mt-5">
         <Orb
           key={value + "1"}

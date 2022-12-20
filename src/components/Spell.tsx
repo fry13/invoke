@@ -10,9 +10,9 @@ interface SpellProps {
 export default function Icon({ spell, imgClasses, textClasses }: SpellProps) {
   return (
     <div>
-      <img        
+      <img
         key={spell.id}
-        className={`mx-auto rounded border border-slate-800 transition-all animate-spellSlide ${imgClasses}`}
+        className={`mx-auto rounded border w-20 border-slate-800 transition-all ${imgClasses}`}
         src={spell.image}
         alt={spell.name}
       />

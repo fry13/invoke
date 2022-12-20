@@ -11,7 +11,7 @@ export default function HomePage() {
     <>
       <Navigation help={true} />
       <img
-        className="mx-auto rounded border border-slate-800"
+        className="mx-auto w-20 rounded border border-slate-800"
         src={invoke}
         alt="Invoke"
       />
