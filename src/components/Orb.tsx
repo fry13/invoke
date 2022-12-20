@@ -1,7 +1,12 @@
 import React from "react";
 import { orbs } from "../orbs";
 
-export default function Orb({ button }: any) {
+interface ButtonProps {
+  button: string;
+  classes?: string;
+}
+
+export default function Orb({ button, classes }: ButtonProps) {
   let newOrb;
   if (button) {
     newOrb = orbs.filter(function (orb) {
@@ -11,7 +16,7 @@ export default function Orb({ button }: any) {
   return (
     <>
       <img
-        className={`mr-1 h-12 rounded-full border border-slate-800 transition-all ${
+        className={`mr-1 h-12 rounded-full border border-slate-800 transition-all ${classes} ${
           button ? "visible" : "invisible"
         }`}
         src={newOrb.image}

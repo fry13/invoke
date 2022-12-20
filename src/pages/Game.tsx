@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTimer } from "react-timer-hook";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
-import Icon from "../components/Spell";
-import Button from "../components/Button";
+import Spell from "../components/Spell";
 import Orb from "../components/Orb";
 import { rarity } from "../utils";
 import { spells } from "../spells";
-
-const xmark = <FontAwesomeIcon icon={faXmark} />;
-const restart = <FontAwesomeIcon icon={faRotateLeft} />;
+import Navigation from "../components/Navigation";
 
 export default function GamePage(props: any) {
   const navigate = useNavigate();
-  const routeChange = (path: string) => {
-    navigate(path);
-  };
 
   // предзагружаем изображения заклинаний
   useEffect(() => {
@@ -26,7 +17,7 @@ export default function GamePage(props: any) {
     });
   });
 
-  // вешаем слушатель на нажатие клавиш, записываем нужные нам значения
+  // слушаем нажатие клавиш, нужные записываем в value из которого в последствии рисуем сферы
   const [value, setValue] = useState("");
 
   const keyDownHandler = (event: any) => {
@@ -94,7 +85,7 @@ export default function GamePage(props: any) {
   const timerProps = useCountdown(time);
 
   // работа с прогрессбаром
-  const [maxSeconds, setMaxSeconds] = useState(5);
+  const [maxSeconds, setMaxSeconds] = useState<number>(5);
   if (timerProps.seconds > maxSeconds) setMaxSeconds(timerProps.seconds);
   let progressBarValue = (timerProps.seconds / maxSeconds) * 100;
 
@@ -129,26 +120,15 @@ export default function GamePage(props: any) {
 
   return (
     <>
-      <div className="flex justify-end mb-2">
-        <Button
-          classes="w-7 h-7 p-1 rounded-full text-xs mb-10 mr-2"
-          text={restart}
-          onClick={restartGame}
-        />
-        <Button
-          classes="w-7 h-7 p-1 rounded-full text-xs mb-10"
-          text={xmark}
-          onClick={() => routeChange("/")}
-        />
-      </div>
-      <Icon spell={spells[currentQuest]} />
-      <div className="flex w-max mx-auto">
+      <Navigation restart={true} exit={true} restartHandler={restartGame} />
+      <Spell spell={spells[currentQuest]} />
+      <div className="flex w-max mx-auto mt-5">
         <Orb button={value[0]} />
         <Orb button={value[1]} />
         <Orb button={value[2]} />
       </div>
       {/* <p className="mx-auto font-bold mt-2">{value || " "}</p> */}
-      <div className="mt-2">
+      <div className="mt-5">
         <span className="mr-8">
           Score: <span className={`font-bold ${rarity(score)}`}>{score}</span>
         </span>

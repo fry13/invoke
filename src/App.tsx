@@ -8,7 +8,9 @@ import MainContainer from "./components/MainContainer";
 
 function App() {
   const localBest = localStorage.getItem("bestScore");
-  const [bestScore, setBestScore] = useState<number>(localBest ? parseInt(localBest) : 0);
+  const [bestScore, setBestScore] = useState<number>(
+    localBest ? parseInt(localBest) : 0
+  );
   const [currentScore, setCurrentScore] = useState<number>(0);
 
   const setCurrentResult = (score: number) => {
@@ -46,7 +48,10 @@ function App() {
             />
           }
         />
-        <Route path="/help" element={<HelpPage />} />
+        <Route
+          path="/help"
+          element={<MainContainer Children={<HelpPage />} />}
+        />
       </Routes>
     </div>
   );
