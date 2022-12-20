@@ -15,7 +15,7 @@ export default function GamePage(props: any) {
     spells.forEach((spell) => {
       new Image().src = spell.image;
     });
-  });
+  }, []);
 
   // слушаем нажатие клавиш, нужные записываем в value из которого в последствии рисуем сферы
   const [value, setValue] = useState("");
@@ -122,10 +122,18 @@ export default function GamePage(props: any) {
     <>
       <Navigation restart={true} exit={true} restartHandler={restartGame} />
       <Spell spell={spells[currentQuest]} />
-      <div className="flex w-max mx-auto mt-5">
-        <Orb button={value[0]} />
-        <Orb button={value[1]} />
-        <Orb button={value[2]} />
+      <div className="flex justify-center w-full mx-auto mt-5">
+        <Orb
+          key={value + "1"}
+          classes={`mx-1 ${value.length > 2 ? "animate-leftOrbSlide" : ""}`}
+          button={value[0]}
+        />
+        <Orb classes="mx-1" button={value[1]} />
+        <Orb
+          key={value}
+          classes="mx-1 animate-rightOrbSlide"
+          button={value[2]}
+        />
       </div>
       {/* <p className="mx-auto font-bold mt-2">{value || " "}</p> */}
       <div className="mt-5">
@@ -150,7 +158,3 @@ export default function GamePage(props: any) {
     </>
   );
 }
-
-//todo сделать faq страницу
-//todo поменять роутинг
-// ? keybindings

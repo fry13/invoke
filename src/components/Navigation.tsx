@@ -11,10 +11,10 @@ const xmark = <FontAwesomeIcon icon={faXmark} />;
 const rotate = <FontAwesomeIcon icon={faRotateLeft} />;
 
 interface NavProps {
-  help?: boolean;
-  restart?: boolean;
-  exit?: boolean;
-  restartHandler?: any;
+  help?: Boolean;
+  restart?: Boolean;
+  exit?: Boolean;
+  restartHandler?: Function;
 }
 
 export default function Navigation({
@@ -25,7 +25,7 @@ export default function Navigation({
 }: NavProps) {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-end mb-2 absolute top-1 right-1">
+    <div className="flex justify-end absolute top-1 right-1">
       <Button
         classes={`w-7 h-7 p-1 m-1 rounded-full text-xs ${
           help ? "inline-block" : "hidden"

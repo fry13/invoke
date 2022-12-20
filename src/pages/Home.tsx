@@ -10,7 +10,6 @@ export default function HomePage() {
   return (
     <>
       <Navigation help={true} />
-      {/* <div className="justify-self-center"> */}
       <img
         className="mx-auto rounded border border-slate-800"
         src={invoke}
@@ -21,7 +20,6 @@ export default function HomePage() {
         text="Start"
         onClick={() => navigate("/game")}
       />
-      {/* </div> */}
     </>
   );
 }

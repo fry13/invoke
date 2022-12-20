@@ -16,7 +16,7 @@ export default function Orb({ button, classes }: ButtonProps) {
   return (
     <>
       <img
-        className={`mr-1 h-12 rounded-full border border-slate-800 transition-all ${classes} ${
+        className={`h-12 rounded-full border border-slate-800 transition-all ${classes} ${
           button ? "visible" : "invisible"
         }`}
         src={newOrb.image}

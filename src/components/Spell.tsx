@@ -12,7 +12,8 @@ export default function Icon({ spell, imgClasses, textClasses }: SpellProps) {
   return (
     <div>
       <img
-        className={`mx-auto rounded border border-slate-800 transition-all ${imgClasses}`}
+        key={spell.id}
+        className={`mx-auto rounded border border-slate-800 transition-all animate-spellSlide ${imgClasses}`}
         src={spell.image || invoke}
         alt={spell.name || "invoke"}
       />

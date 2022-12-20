@@ -23,12 +23,12 @@ function App() {
   return (
     <div className="flex flex-col justify-center mx-auto w-screen h-screen">
       <Routes>
-        <Route path="/" element={<MainContainer Children={<HomePage />} />} />
+        <Route path="/" element={<MainContainer children={<HomePage />} />} />
         <Route
           path="/game"
           element={
             <MainContainer
-              Children={
+              children={
                 <GamePage
                   setCurrentScore={setCurrentResult}
                   setBestScore={setBestResult}
@@ -42,7 +42,7 @@ function App() {
           path="/result"
           element={
             <MainContainer
-              Children={
+              children={
                 <ResultPage score={currentScore} bestScore={bestScore} />
               }
             />
@@ -50,7 +50,7 @@ function App() {
         />
         <Route
           path="/help"
-          element={<MainContainer Children={<HelpPage />} />}
+          element={<MainContainer children={<HelpPage />} />}
         />
       </Routes>
     </div>
