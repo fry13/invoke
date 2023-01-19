@@ -33,7 +33,7 @@ function App() {
                   setCurrentScore={setCurrentResult}
                   setBestScore={setBestResult}
                   bestScore={bestScore}
-                />
+                />                
               }
             />
           }

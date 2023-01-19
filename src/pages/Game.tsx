@@ -6,6 +6,7 @@ import Orb from "../components/Orb";
 import { rarity } from "../utils/utils";
 import { spells } from "../data/spells";
 import Navigation from "../components/Navigation";
+import ActionPanel from "../components/ActionPanel";
 
 export default function GamePage(props: any) {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function GamePage(props: any) {
   const keyDownHandler = (event: any) => {
     const key = event.keyCode;
     if (key === 81 || key === 87 || key === 69) {
-      handler(key);
+      keyboardHandler(key);
     }
   };
 
@@ -32,11 +33,19 @@ export default function GamePage(props: any) {
     return () => document.removeEventListener("keydown", keyDownHandler, true);
   });
 
-  const handler = (key: number) => {
+  const keyboardHandler = (key: number) => {
     let keyName;
     if (key === 81) keyName = "q";
     else if (key === 87) keyName = "w";
     else if (key === 69) keyName = "e";
+    setValue(value + keyName);
+    if (value.length === 3) {
+      setValue(value.slice(1) + keyName);
+    }
+  };
+
+  const actionPanelHandler = (keyName: string) => {
+    console.log(keyName);
     setValue(value + keyName);
     if (value.length === 3) {
       setValue(value.slice(1) + keyName);
@@ -158,6 +167,7 @@ export default function GamePage(props: any) {
           style={{ width: progressBarValue + "%" }}
         ></div>
       </div>
+      <ActionPanel handler={actionPanelHandler} />
     </>
   );
 }
