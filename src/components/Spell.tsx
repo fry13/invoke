@@ -12,7 +12,7 @@ export default function Icon({ spell, imgClasses, textClasses }: SpellProps) {
     <div>
       <img
         key={spell.id}
-        className={`mx-auto rounded border w-20 h-20 bg-slate-800 border-slate-800 transition-all ${imgClasses}`}
+        className={`mx-auto rounded border w-20 h-20 bg-slate-800 dark:bg-slate-500 border-slate-800 dark:border-slate-500 transition-all ${imgClasses}`}
         src={spell.image}
         alt={spell.name}
       />

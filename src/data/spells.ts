@@ -1,13 +1,13 @@
-import GhostWalk from './images/ghost_walk.png'
-import ColdSnap from './images/cold_snap.png'
-import IceWall from './images/ice_wall.png'
-import EMP from './images/emp.png'
-import Tornado from './images/tornado.png'
-import Alacrity from './images/alacrity.png'
-import SunStrike from './images/sun_strike.png'
-import ForgeSpirit from './images/forge_spirit.png'
-import ChaosMeteor from './images/chaos_meteor.png'
-import DeafeningBlast from './images/deafening_blast.png'
+import GhostWalk from '../images/ghost_walk.png'
+import ColdSnap from '../images/cold_snap.png'
+import IceWall from '../images/ice_wall.png'
+import EMP from '../images/emp.png'
+import Tornado from '../images/tornado.png'
+import Alacrity from '../images/alacrity.png'
+import SunStrike from '../images/sun_strike.png'
+import ForgeSpirit from '../images/forge_spirit.png'
+import ChaosMeteor from '../images/chaos_meteor.png'
+import DeafeningBlast from '../images/deafening_blast.png'
 
 export const spells = [
   {

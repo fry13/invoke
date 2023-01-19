@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "../components/Navigation";
-import { rarity } from "../utils";
+import { rarity } from "../utils/utils";
 
 interface ScoreProps {
   score: number;

@@ -4,4 +4,3 @@ export const rarity = (score: number) => {
   else if (score >= 25) return "text-blue-600";
   else if (score >= 5) return "text-green-600";
 };
-

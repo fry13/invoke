@@ -9,9 +9,9 @@ export default function HomePage() {
 
   return (
     <>
-      <Navigation help={true} />
+      <Navigation help={true} darkMode={true} />
       <img
-        className="mx-auto w-20 rounded border border-slate-800"
+        className="mx-auto w-20 rounded border border-slate-800 dark:border-slate-500"
         src={invoke}
         alt="Invoke"
       />

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useTimer } from "react-timer-hook";
 import Spell from "../components/Spell";
 import Orb from "../components/Orb";
-import { rarity } from "../utils";
-import { spells } from "../spells";
+import { rarity } from "../utils/utils";
+import { spells } from "../data/spells";
 import Navigation from "../components/Navigation";
 
 export default function GamePage(props: any) {
@@ -87,7 +87,7 @@ export default function GamePage(props: any) {
   // работа с прогрессбаром
   const [maxSeconds, setMaxSeconds] = useState<number>(5);
   if (timerProps.seconds > maxSeconds) setMaxSeconds(timerProps.seconds);
-  let progressBarValue = (timerProps.seconds / maxSeconds) * 100;
+  let progressBarValue = ((timerProps.seconds - 1) / (maxSeconds - 1)) * 100;
 
   // проверяем выполнен ли квест, прибавляем таймер, выводим очки
   const [score, setScore] = useState<number>(0);
@@ -138,12 +138,15 @@ export default function GamePage(props: any) {
       {/* <p className="mx-auto font-bold mt-2">{value || " "}</p> */}
       <div className="mt-5">
         <span className="mr-8">
-          Score: <span className={`font-bold ${rarity(score)}`}>{score}</span>
+          Score:{" "}
+          <span className={`font-bold transition-colors ${rarity(score)}`}>
+            {score}
+          </span>
         </span>
         Time:{" "}
         <span
-          className={`font-bold ${
-            timerProps.seconds <= 3 ? "text-red-700" : "text-slate-800"
+          className={`font-bold transition-colors ${
+            timerProps.seconds <= 3 ? "text-red-700" : ""
           }`}
         >
           {timerProps.seconds}
@@ -151,7 +154,7 @@ export default function GamePage(props: any) {
       </div>
       <div className="w-full h-2 absolute bottom-0 -ml-2">
         <div
-          className="bg-slate-800 h-2"
+          className="bg-slate-800 dark:bg-slate-500 h-2 transition-all ease-linear duration-1000"
           style={{ width: progressBarValue + "%" }}
         ></div>
       </div>

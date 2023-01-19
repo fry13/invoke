@@ -1,5 +1,5 @@
 import React from "react";
-import { orbs } from "../orbs";
+import { orbs } from "../data/orbs";
 
 interface ButtonProps {
   button: string;

@@ -1,6 +1,6 @@
-import Quas from './images/quas.png'
-import Wex from './images/wex.png'
-import Exort from './images/exort.png'
+import Quas from '../images/quas.png'
+import Wex from '../images/wex.png'
+import Exort from '../images/exort.png'
 
 
 export const orbs = [
