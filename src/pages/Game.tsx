@@ -121,6 +121,7 @@ export default function GamePage(props: any) {
   function restartGame() {
     let time = new Date();
     time.setSeconds(time.getSeconds() + 5);
+    setMaxSeconds(5);
     timerProps.restart(time);
     setScore(0);
     setCurrentQuest(createNextQuest(prevQuests));
