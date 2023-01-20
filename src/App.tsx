@@ -4,6 +4,7 @@ import GamePage from "./pages/Game";
 import HomePage from "./pages/Home";
 import ResultPage from "./pages/Result";
 import HelpPage from "./pages/Help";
+import AboutPage from "./pages/About";
 import MainContainer from "./components/MainContainer";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             element={<ResultPage score={currentScore} bestScore={bestScore} />}
           />
           <Route path="/help" element={<HelpPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </MainContainer>
