@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import GamePage from "./pages/Game";
 import HomePage from "./pages/Home";
 import ResultPage from "./pages/Result";
@@ -22,37 +22,27 @@ function App() {
 
   return (
     <div className="flex flex-col justify-center mx-auto w-screen h-screen bg-slate-50 dark:bg-slate-800 transition-colors">
-      <Routes>
-        <Route path="/" element={<MainContainer children={<HomePage />} />} />
-        <Route
-          path="/game"
-          element={
-            <MainContainer
-              children={
-                <GamePage
-                  setCurrentScore={setCurrentResult}
-                  setBestScore={setBestResult}
-                  bestScore={bestScore}
-                />                
-              }
-            />
-          }
-        />
-        <Route
-          path="/result"
-          element={
-            <MainContainer
-              children={
-                <ResultPage score={currentScore} bestScore={bestScore} />
-              }
-            />
-          }
-        />
-        <Route
-          path="/help"
-          element={<MainContainer children={<HelpPage />} />}
-        />
-      </Routes>
+      <MainContainer>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/game"
+            element={
+              <GamePage
+                setCurrentScore={setCurrentResult}
+                setBestScore={setBestResult}
+                bestScore={bestScore}
+              />
+            }
+          />
+          <Route
+            path="/result"
+            element={<ResultPage score={currentScore} bestScore={bestScore} />}
+          />
+          <Route path="/help" element={<HelpPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </MainContainer>
     </div>
   );
 }
