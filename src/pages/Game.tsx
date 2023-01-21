@@ -8,7 +8,17 @@ import { spells } from "../data/spells";
 import Navigation from "../components/Navigation";
 import ActionPanel from "../components/ActionPanel";
 
-export default function GamePage(props: any) {
+interface GameProps {
+  bestScore: number;
+  setBestScore: Function;
+  setCurrentScore: Function;
+}
+
+export default function GamePage({
+  bestScore,
+  setBestScore,
+  setCurrentScore,
+}: GameProps) {
   const navigate = useNavigate();
 
   // предзагружаем изображения заклинаний
@@ -21,7 +31,7 @@ export default function GamePage(props: any) {
   // слушаем нажатие клавиш, нужные записываем в value из которого в последствии рисуем сферы
   const [value, setValue] = useState("");
 
-  const keyDownHandler = (event: any) => {
+  const keyDownHandler = (event: KeyboardEvent) => {
     const key = event.keyCode;
     if (key === 81 || key === 87 || key === 69) {
       keyboardHandler(key);
@@ -108,10 +118,10 @@ export default function GamePage(props: any) {
 
   // в конце игры
   const endGameHandler = () => {
-    const best = props.bestScore || 0;
-    props.setCurrentScore(score);
-    if (score > parseInt(best)) {
-      props.setBestScore(score);
+    const best = bestScore || 0;
+    setCurrentScore(score);
+    if (score > best) {
+      setBestScore(score);
       localStorage.setItem("bestScore", score.toString());
     }
     navigate("/result");
