@@ -1,9 +1,9 @@
-# [Invoke](https://darling-trifle-30ec30.netlify.app/)
+# [Invoke](https://invok3.netlify.app/)
 
 Приложение для помощи запоминания комбинаций заклинаний при игре в Dota 2 на герое Invoker.  
 Управление на компьютере осуществляется клавишами **Q**, **W**, **E**, на мобильных устройствах есть панель с кнопками.  
 Написано с помощью react, typescript, tailwind.  
-**[Ссылка на проект](https://darling-trifle-30ec30.netlify.app/)**
+**[Ссылка на проект](https://invok3.netlify.app/)**
 
 ## Особенности
 
